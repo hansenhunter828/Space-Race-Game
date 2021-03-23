@@ -13,6 +13,7 @@ namespace Space_Race_Game
 {
     public partial class Form1 : Form
     {
+        //Hunter Hansen
         #region Variables
         #region Player Variables
         int shipHeight = 20;
@@ -72,17 +73,18 @@ namespace Space_Race_Game
 
         public void GameInitialize()
         {
+            //Reset Labels
             titleLabel.Text = "";
             subTitleLabel.Text = "";
             ship1ScoreLabel.Text = "0";
             ship2ScoreLabel.Text = "0";
-
+            //Turn on game timer and change game stae
             gameTimer.Enabled = true;
             gameState = "running";
-
+            //Reset Ship Positions
             ship1Reset();
             ship2Reset();
-
+            //Clear Lists
             obstacle1XList.Clear();
             obstacle1YList.Clear();
             obstacle2XList.Clear();
@@ -91,6 +93,7 @@ namespace Space_Race_Game
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
+            //Player Controls
             switch (e.KeyCode)
             {
                 //Player 1
@@ -144,6 +147,7 @@ namespace Space_Race_Game
 
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
+            //Player Controls
             switch (e.KeyCode)
             {
                 //Player 1
@@ -173,6 +177,7 @@ namespace Space_Race_Game
 
         private void Form1_Paint(object sender, PaintEventArgs e)
         {
+            //Game Scenes
             #region Game Scenes
             if (gameState == "waiting")
             {
@@ -236,7 +241,9 @@ namespace Space_Race_Game
 
         private void gameTimer_Tick(object sender, EventArgs e)
         {
+            //Counting timer
             timer--;
+            //Increase Spawn Timer
             spawnCounter++;
             #region Player Movement
             //Player 1 Movement
@@ -270,6 +277,7 @@ namespace Space_Race_Game
 
                 spawnCounter = 0;
             }
+            //Move Obstacles
             #region Move Obstacles
             for(int i = 0; i < obstacle1XList.Count; i++)
             {
@@ -280,8 +288,9 @@ namespace Space_Race_Game
                 obstacle2XList[i] -= obstacleSpeed;
             }
             #endregion
+            //Delete Obstacles
             #region Delete Obstacles
-            for(int i = 0; i < obstacle1XList.Count; i++)
+            for (int i = 0; i < obstacle1XList.Count; i++)
             {
                 if(obstacle1XList[i] > this.Width)
                 {
@@ -298,6 +307,7 @@ namespace Space_Race_Game
                 }
             }
             #endregion
+            //Collisions
             #region Player Obstacle Collisions
             Rectangle ship1Rec = new Rectangle(ship1X, ship1Y, shipWidth, shipHeight);
             Rectangle ship2Rec = new Rectangle(ship2X, ship2Y, shipWidth, shipHeight);
@@ -328,6 +338,7 @@ namespace Space_Race_Game
                 }
             }
             #endregion
+            //Scoring
             #region Scoring
             if(ship1Y <= 0)
             {
@@ -345,6 +356,7 @@ namespace Space_Race_Game
                 ship2Reset();
             }
             #endregion
+            //Game End
             if(timer == 0)
             {
                 gameOver.Play();
@@ -357,6 +369,7 @@ namespace Space_Race_Game
 
         public void ship1Reset()
         {
+            //Reset Player 1 Positions
             failSound.Play();
             ship1X = ship1XDefault;
             ship1Y = ship1YDefault;
@@ -364,6 +377,7 @@ namespace Space_Race_Game
 
         public void ship2Reset()
         {
+            //Reset Player 2 Positions
             failSound.Play();
             ship2X = ship2XDefault;
             ship2Y = ship2YDefault;
