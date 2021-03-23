@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Media;
 
 namespace Space_Race_Game
 {
@@ -49,8 +50,16 @@ namespace Space_Race_Game
         #region Brushes
         SolidBrush whiteBrush = new SolidBrush(Color.White);
         #endregion
+        #region Sound Libary
+        SoundPlayer gameOver = new SoundPlayer(Properties.Resources.gameOver);
+        SoundPlayer point = new SoundPlayer(Properties.Resources.point);
+        SoundPlayer rocketSound = new SoundPlayer(Properties.Resources.engineNoise);
+        SoundPlayer failSound = new SoundPlayer(Properties.Resources.failNoise);
+        
+        #endregion
         string gameState = "waiting";
 
+        bool soundplaying = false;
         Random randGen = new Random();
 
         int spawnCounter = 0;
@@ -87,16 +96,36 @@ namespace Space_Race_Game
                 //Player 1
                 case Keys.W:
                     wDown = true;
+                    if(soundplaying == false)
+                    {
+                        rocketSound.Play();
+                        soundplaying = true;
+                    }
                     break;
                 case Keys.S:
                     sDown = true;
+                    if (soundplaying == false)
+                    {
+                        rocketSound.Play();
+                        soundplaying = true;
+                    }
                     break;
                 //Player 2
                 case Keys.Up:
                     upArrowDown = true;
+                    if (soundplaying == false)
+                    {
+                        rocketSound.Play();
+                        soundplaying = true;
+                    }
                     break;
                 case Keys.Down:
                     downArrowDown = true;
+                    if (soundplaying == false)
+                    {
+                        rocketSound.Play();
+                        soundplaying = true;
+                    }
                     break;
                 case Keys.Space:
                     if(gameState == "waiting" || gameState == "gameOver")
@@ -120,16 +149,24 @@ namespace Space_Race_Game
                 //Player 1
                 case Keys.W:
                     wDown = false;
+                    soundplaying = false;
+                    rocketSound.Stop();
                     break;
                 case Keys.S:
                     sDown = false;
+                    soundplaying = false;
+                    rocketSound.Stop();
                     break;
                 //Player 2
                 case Keys.Up:
                     upArrowDown = false;
+                    soundplaying = false;
+                    rocketSound.Stop();
                     break;
                 case Keys.Down:
                     downArrowDown = false;
+                    soundplaying = false;
+                    rocketSound.Stop();
                     break;
             }
         }
@@ -147,6 +184,9 @@ namespace Space_Race_Game
                 titleLabel.Text = "";
                 subTitleLabel.Text = "";
 
+                ship1ScoreLabel.Text = $"{ship1Score}";
+                ship2ScoreLabel.Text = $"{ship2Score}";
+
                 #region Players
                 //Draw Players
                 e.Graphics.FillRectangle(whiteBrush, ship1X, ship1Y, shipWidth, shipHeight);
@@ -162,6 +202,7 @@ namespace Space_Race_Game
                     e.Graphics.FillRectangle(whiteBrush, obstacle2XList[i], obstacle2YList[i], obstacleWidth, obstacleHeight);
                 }
                 #endregion
+                //Timer
                 for(int i = 0; i < timer; i++)
                 {
                     e.Graphics.FillRectangle(whiteBrush, 373, 0, 10, 500 - timer) ;
@@ -173,18 +214,21 @@ namespace Space_Race_Game
                 {
                     titleLabel.Text = "Game Over";
                     subTitleLabel.Text = $"Player 1 Won with {ship1Score} points";
+                    subTitleLabel.Text += $"\nPress Space To Replay Or Escape To Exit";
                 }
 
                 if(ship2Score > ship1Score)
                 {
                     titleLabel.Text = "Game Over";
                     subTitleLabel.Text = $"Player 2 Won with {ship2Score} points";
+                    subTitleLabel.Text += $"\nPress Space To Replay Or Escape To Exit";
                 }
 
                 if(ship1Score == ship2Score)
                 {
                     titleLabel.Text = "Game Over";
                     subTitleLabel.Text = $"Its a Tie!";
+                    subTitleLabel.Text += $"\nPress Space To Replay Or Escape To Exit";
                 }
             }
             #endregion
@@ -198,13 +242,13 @@ namespace Space_Race_Game
             //Player 1 Movement
             if (wDown == true && ship1Y > 0)
             {
-                ship1Y -= shipSpeed;
+                ship1Y -= shipSpeed;              
             }
             if (sDown == true && ship1Y < this.Height - shipHeight)
             {
-                ship1Y += shipSpeed;
+                ship1Y += shipSpeed;  
             }
-            //Player 1 Movement
+            //Player 2 Movement
             if (upArrowDown == true && ship2Y > 0)
             {
                 ship2Y -= shipSpeed;
@@ -289,6 +333,7 @@ namespace Space_Race_Game
             {
                 ship1Score++;
                 ship1ScoreLabel.Text = $"{ship1Score}";
+                point.Play();
                 ship1Reset();
             }
 
@@ -296,11 +341,13 @@ namespace Space_Race_Game
             {
                 ship2Score++;
                 ship2ScoreLabel.Text = $"{ship2Score}";
+                point.Play();
                 ship2Reset();
             }
             #endregion
             if(timer == 0)
             {
+                gameOver.Play();
                 gameState = "gameOver";
                 gameTimer.Enabled = false;
             }
@@ -310,12 +357,14 @@ namespace Space_Race_Game
 
         public void ship1Reset()
         {
+            failSound.Play();
             ship1X = ship1XDefault;
             ship1Y = ship1YDefault;
         }
 
         public void ship2Reset()
         {
+            failSound.Play();
             ship2X = ship2XDefault;
             ship2Y = ship2YDefault;
         }

@@ -47,10 +47,9 @@ namespace Space_Race_Game
             this.titleLabel.BackColor = System.Drawing.Color.Transparent;
             this.titleLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleLabel.ForeColor = System.Drawing.Color.White;
-            this.titleLabel.Location = new System.Drawing.Point(286, 92);
-            this.titleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.titleLabel.Location = new System.Drawing.Point(392, 113);
             this.titleLabel.Name = "titleLabel";
-            this.titleLabel.Size = new System.Drawing.Size(153, 35);
+            this.titleLabel.Size = new System.Drawing.Size(204, 43);
             this.titleLabel.TabIndex = 0;
             this.titleLabel.Text = "Space Race";
             this.titleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -60,10 +59,9 @@ namespace Space_Race_Game
             this.subTitleLabel.BackColor = System.Drawing.Color.Transparent;
             this.subTitleLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.subTitleLabel.ForeColor = System.Drawing.Color.White;
-            this.subTitleLabel.Location = new System.Drawing.Point(185, 127);
-            this.subTitleLabel.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.subTitleLabel.Location = new System.Drawing.Point(233, 156);
             this.subTitleLabel.Name = "subTitleLabel";
-            this.subTitleLabel.Size = new System.Drawing.Size(351, 35);
+            this.subTitleLabel.Size = new System.Drawing.Size(531, 110);
             this.subTitleLabel.TabIndex = 1;
             this.subTitleLabel.Text = "Press Space To Start Or Escape To Exit";
             this.subTitleLabel.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -73,37 +71,37 @@ namespace Space_Race_Game
             this.ship1ScoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.ship1ScoreLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ship1ScoreLabel.ForeColor = System.Drawing.Color.White;
-            this.ship1ScoreLabel.Location = new System.Drawing.Point(12, 468);
+            this.ship1ScoreLabel.Location = new System.Drawing.Point(16, 576);
+            this.ship1ScoreLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ship1ScoreLabel.Name = "ship1ScoreLabel";
-            this.ship1ScoreLabel.Size = new System.Drawing.Size(125, 29);
+            this.ship1ScoreLabel.Size = new System.Drawing.Size(167, 36);
             this.ship1ScoreLabel.TabIndex = 2;
-            this.ship1ScoreLabel.Text = "0";
             // 
             // ship2ScoreLabel
             // 
             this.ship2ScoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.ship2ScoreLabel.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ship2ScoreLabel.ForeColor = System.Drawing.Color.White;
-            this.ship2ScoreLabel.Location = new System.Drawing.Point(623, 468);
+            this.ship2ScoreLabel.Location = new System.Drawing.Point(831, 576);
+            this.ship2ScoreLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ship2ScoreLabel.Name = "ship2ScoreLabel";
-            this.ship2ScoreLabel.Size = new System.Drawing.Size(125, 29);
+            this.ship2ScoreLabel.Size = new System.Drawing.Size(167, 36);
             this.ship2ScoreLabel.TabIndex = 3;
-            this.ship2ScoreLabel.Text = "0";
             this.ship2ScoreLabel.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(750, 500);
+            this.ClientSize = new System.Drawing.Size(1000, 615);
             this.Controls.Add(this.ship2ScoreLabel);
             this.Controls.Add(this.ship1ScoreLabel);
             this.Controls.Add(this.subTitleLabel);
             this.Controls.Add(this.titleLabel);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
